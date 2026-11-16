@@ -15,7 +15,7 @@
 | `api/events.mjs` | connpassのグループの新着フィードから、これからの集まりを返す（Vercelの関数） |
 | `og.png` | SNSやLINEにURLを貼ったときの画像 |
 | `og.html` | `og.png`の元 |
-| `icon.png`、`favicon.svg` | アイコン |
+| `icon.png`、`favicon.svg`、`favicon.ico` | アイコン |
 | `brand/` | ロゴの元（`logo.html`）と書き出した画像 |
 | `robots.txt`、`sitemap.xml` | 検索エンジン向け |
 | `scripts/check.mjs` | 公開前の確認 |
@@ -50,6 +50,8 @@ CHROME="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 "$CHROME" --headless=new --hide-scrollbars --window-size=800,800 --screenshot=brand/logo-text.png "file://$PWD/brand/logo.html"
 "$CHROME" --headless=new --hide-scrollbars --window-size=800,800 --screenshot=brand/logo-plain.png "file://$PWD/brand/logo.html?plain"
 ```
+
+`favicon.ico`は、`favicon.svg`から16・32・48pxのPNGを作って、1つにまとめたものです（PNGは`rsvg-convert -w 48 -h 48 favicon.svg -o 48.png`のように作ります）。
 
 ## 写真の出典
 

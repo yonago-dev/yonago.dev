@@ -20,7 +20,7 @@ if (ld) {
   }
 }
 
-for (const file of ['og.png', 'icon.png', 'favicon.svg', 'robots.txt', 'sitemap.xml']) {
+for (const file of ['og.png', 'icon.png', 'favicon.svg', 'favicon.ico', 'robots.txt', 'sitemap.xml']) {
   need(existsSync(file), `${file}がありません`);
 }
 
