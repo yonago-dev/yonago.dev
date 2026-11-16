@@ -43,24 +43,6 @@
       "url": "https://yonago.dev/",
       "inLanguage": "ja",
       "publisher": { "@id": "https://yonago.dev/#org" }
-    },
-    {
-      "@type": "Event",
-      "name": "yonago.dev #1",
-      "description": "yonago.devの1回目の集まりです。米子・山陰のエンジニアが集まって、話したり作ったりします。言語や職種は問いません。",
-      "startDate": "2026-12-13T14:00:00+09:00",
-      "endDate": "2026-12-13T17:00:00+09:00",
-      "eventStatus": "https://schema.org/EventScheduled",
-      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-      "isAccessibleForFree": true,
-      "image": "https://yonago.dev/og.png",
-      "url": "https://yonago.dev/",
-      "location": {
-        "@type": "Place",
-        "name": "米子駅の近く（会場は調整中）",
-        "address": { "@type": "PostalAddress", "addressLocality": "米子市", "addressRegion": "鳥取県", "addressCountry": "JP" }
-      },
-      "organizer": { "@id": "https://yonago.dev/#org" }
     }
   ]
 }
@@ -139,6 +121,7 @@
     border: 1px solid var(--line); border-radius: 999px;
     padding: 2px 14px; background: var(--card);
   }
+  a.status { text-decoration: none; }
   .status::before {
     content: ""; width: 8px; height: 8px; border-radius: 50%;
     background: var(--sun);
@@ -185,7 +168,8 @@
   }
   h2 { font-size: 24px; line-height: 1.5; margin: 0 0 16px; }
   p { margin: 0 0 14px; }
-  section p a { color: var(--accent); text-underline-offset: 3px; }
+  section p a, section dd a { color: var(--accent); text-underline-offset: 3px; }
+  [hidden] { display: none !important; }
 
   .cards { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
   .card {
@@ -241,6 +225,7 @@
   .event-date .day { font-family: var(--mono); font-size: 46px; letter-spacing: -0.04em; }
   .event dl div { grid-template-columns: 4.5em 1fr; border: 0; padding: 3px 0; }
   .event dl div:last-child { border: 0; }
+  .event + p { margin-top: 16px; }
   @media (max-width: 560px) {
     .event { grid-template-columns: 1fr; gap: 14px; }
   }
@@ -351,7 +336,7 @@
 
 <header>
   <div class="wrap">
-    <span class="status">初回は12月13日（日）14:00〜17:00。場所は調整中です</span>
+    <a class="status" id="next-pill" href="https://yonago-dev.connpass.com/" target="_blank" rel="noopener">集まりの日程はconnpassで</a>
     <h1>
       <span class="brand">yonago<b>.dev</b></span>
       <span class="lead">米子・山陰のエンジニアが、月に1回集まる場。</span>
@@ -374,16 +359,17 @@
 
   <section>
     <p class="eyebrow">// next</p>
-    <h2>初回の集まり</h2>
-    <div class="event">
-      <div class="event-date"><span>2026年12月</span><span class="day">13</span><span>日曜日</span></div>
+    <h2>次の集まり</h2>
+    <div class="event" id="next" hidden>
+      <div class="event-date"><span data-f="ym"></span><span class="day" data-f="day"></span><span data-f="week"></span></div>
       <dl>
-        <div><dt>時間</dt><dd><time datetime="2026-12-13T14:00+09:00">14:00</time>〜<time datetime="2026-12-13T17:00+09:00">17:00</time></dd></div>
-        <div><dt>場所</dt><dd>調整中です。米子駅の近くで考えています。</dd></div>
-        <div><dt>内容</dt><dd>決まったら、ここに載せます。</dd></div>
-        <div><dt>申し込み</dt><dd>connpassにイベントを出したら、ここにリンクを載せます。</dd></div>
+        <div><dt>名前</dt><dd data-f="title"></dd></div>
+        <div><dt>時間</dt><dd data-f="time"></dd></div>
+        <div><dt>場所</dt><dd data-f="place"></dd></div>
+        <div><dt>申し込み</dt><dd><a data-f="url" target="_blank" rel="noopener">connpassのイベントページ</a></dd></div>
       </dl>
     </div>
+    <p>日程は、<a href="https://yonago-dev.connpass.com/" target="_blank" rel="noopener">connpassのグループ</a>でお知らせしています。メンバーになると、新しい集まりのお知らせがメールで届きます。</p>
   </section>
 
   <section>
@@ -445,16 +431,6 @@
   </section>
 
   <section>
-    <p class="eyebrow">// status</p>
-    <h2>これから</h2>
-    <dl>
-      <div><dt>いま</dt><dd>まずは知り合い数人で始める準備をしています。</dd></div>
-      <div><dt>初回</dt><dd>12月13日（日）14:00〜17:00です。場所は調整中です。</dd></div>
-      <div><dt>参加の受付</dt><dd>connpassにグループを作りました。もうすぐ、そこにイベントを出します。</dd></div>
-    </dl>
-  </section>
-
-  <section>
     <p class="eyebrow">// github</p>
     <h2>コミュニティのGitHub</h2>
     <p>yonago.devのGitHubです。このサイトのコードも、ここに置いています。</p>
@@ -480,6 +456,38 @@
     <p class="credit">最初のアニメーションの写真：NASA Blue Marble（NASA EOSDIS GIBS）、<a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank" rel="noopener">地理院タイル</a>（全国最新写真）。データソース：Landsat8画像（GSI,TSIC,GEO Grid/AIST）, Landsat8画像（courtesy of the U.S. Geological Survey）, 海底地形（GEBCO）</p>
   </div>
 </footer>
+
+<script>
+  // 次の集まりは、connpassのグループから読む（api/events.mjs）
+  (function () {
+    function jst(iso) {
+      var d = new Date(Date.parse(iso) + 9 * 3600e3);
+      var pad = function (n) { return ('0' + n).slice(-2); };
+      return { y: d.getUTCFullYear(), m: d.getUTCMonth() + 1, d: d.getUTCDate(), w: '日月火水木金土'[d.getUTCDay()], t: pad(d.getUTCHours()) + ':' + pad(d.getUTCMinutes()) };
+    }
+
+    fetch('/api/events').then(function (r) { return r.ok ? r.json() : null; }).then(function (data) {
+      var e = data && data.events && data.events[0];
+      if (!e) return;
+      var s = jst(e.start), t = jst(e.end);
+      var sameDay = s.y === t.y && s.m === t.m && s.d === t.d;
+      var card = document.getElementById('next');
+      var set = function (key, text) { card.querySelector('[data-f="' + key + '"]').textContent = text; };
+      set('ym', s.y + '年' + s.m + '月');
+      set('day', s.d);
+      set('week', s.w + '曜日');
+      set('title', e.title);
+      set('time', s.t + '〜' + (sameDay ? '' : t.m + '月' + t.d + '日 ') + t.t);
+      set('place', e.place);
+      card.querySelector('[data-f="url"]').href = e.url;
+      card.hidden = false;
+
+      var pill = document.getElementById('next-pill');
+      pill.textContent = '次回は' + s.m + '月' + s.d + '日（' + s.w + '）';
+      pill.href = e.url;
+    }).catch(function () {});
+  })();
+</script>
 
 <script>
   (function () {
