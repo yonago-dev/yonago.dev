@@ -18,6 +18,7 @@
 | `brand/` | ロゴの元（`logo.html`）と書き出した画像 |
 | `robots.txt`、`sitemap.xml` | 検索エンジン向け |
 | `scripts/check.mjs` | 公開前の確認 |
+| `docs/venues.md` | [米子で集まりに使える場所](docs/venues.md)の一覧 |
 
 ## 手元で見る
 
