@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<style>
+  html, body { margin: 0; width: 800px; height: 800px; overflow: hidden; background: #f6f3ec; }
+  svg { display: block; width: 800px; height: 800px; }
+  text {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-weight: 700; font-size: 108px; letter-spacing: -4px;
+  }
+</style>
+</head>
+<body>
+<!-- 中海ごしに見る大山と朝日。?plain を付けると文字なしで、絵を大きく切り出す -->
+<svg id="art" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="800" fill="#f6f3ec"/>
+
+  <text id="word" x="400" y="178" text-anchor="middle" fill="#1b2530">yonago<tspan fill="#1d6a8a">.dev</tspan></text>
+
+  <circle cx="606" cy="318" r="58" fill="#e98a4b"/>
+
+  <!-- 大山 -->
+  <path d="M0 506 120 484 250 440 336 382 390 326 420 306 452 300 478 310 524 356 604 428 700 474 800 494V580H0Z" fill="#8ea3b3"/>
+  <path d="M390 326 420 306 452 300 478 310 506 338 486 334 474 352 456 332 440 356 424 334 408 348 402 330Z" fill="#fffdf8"/>
+
+  <!-- 手前の山並み -->
+  <path d="M0 530 130 504 270 520 410 500 560 524 700 506 800 518V590H0Z" fill="#33475a"/>
+
+  <!-- 中海 -->
+  <rect y="562" width="800" height="238" fill="#2b7a99"/>
+  <g stroke="#e98a4b" stroke-width="7" stroke-linecap="round">
+    <path d="M572 592h68M586 622h40M560 654h92M592 688h28"/>
+  </g>
+  <g stroke="#ffffff" stroke-opacity=".42" stroke-width="5" stroke-linecap="round">
+    <path d="M70 600h110M250 630h150M440 606h70M690 640h80M120 680h90M330 706h130M520 730h90M680 716h70M60 752h120M400 768h80"/>
+  </g>
+</svg>
+<script>
+  if (location.search.indexOf('plain') !== -1) {
+    document.getElementById('word').remove();
+    document.getElementById('art').setAttribute('viewBox', '100 200 600 600');
+  }
+</script>
+</body>
+</html>
